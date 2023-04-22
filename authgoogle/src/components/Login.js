@@ -7,13 +7,13 @@ import { useUserAuth } from "../context/UserAuthContext";
 import styled from "styled-components";
 
 const Login = () => {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
 
- /* const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
@@ -22,7 +22,7 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
     }
-  };*/
+  };
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
@@ -96,10 +96,13 @@ const Login = () => {
             <LoginwithEmail>
                 <InputTextEmail>
                 <i className="login__icon fas fa-user"></i>
-                    <p>Email:</p><input type="text" placeholder="Enter your email" />
-                    <p>Password:</p><input type="text" placeholder="Password" />
-                    
+                    <p>Email:</p><input type="text" placeholder="Enter your email" value = {email} onChange={(e) => setEmail(e.target.value)} />
+                    <p>Password:</p><input type="text" placeholder="Password" value = {password} onChange={(e) => setPassword(e.target.value)} />
                 </InputTextEmail>
+                <button onSubmit ={handleSubmit} type="Submit">
+                  LogIn
+                </button>
+                <p>Does't have Account ? <a href="/signup">SignUp</a> </p>
             </LoginwithEmail>
         </LoginBox>
     </Container>
